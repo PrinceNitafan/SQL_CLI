@@ -32,18 +32,6 @@ CREATE TABLE checkin (
 );
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 CREATE TABLE tip (
         tip_id INTEGER PRIMARY KEY,
         user_id CHAR(22) NOT NULL FOREIGN KEY REFERENCES user_yelp(user_id),
@@ -76,82 +64,37 @@ CREATE TABLE review (
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Insertions
-
 
 BULK INSERT dbo.business 
 FROM 'd:\userdata\cmpt354YelpA3\business.csv' 
 WITH (fieldterminator=',', rowterminator='\n', firstrow=2)
 GO
 
-
-USE pen354
 BULK INSERT dbo.user_yelp 
 FROM 'd:\userdata\cmpt354YelpA3\user_yelp.csv' 
 WITH (fieldterminator=',', rowterminator='\n', firstrow=2)
 GO
 
 
-USE pen354
 BULK INSERT dbo.checkin 
 FROM 'd:\userdata\cmpt354YelpA3\checkin.csv' 
 WITH (fieldterminator=',', rowterminator='\n', firstrow=2)
 GO
 
 
-USE pen354
 BULK INSERT dbo.friendship 
 FROM 'd:\userdata\cmpt354YelpA3\friendship.csv' 
 WITH (fieldterminator=',', rowterminator='\n', firstrow=2)
 GO
 
 
-USE pen354
 BULK INSERT dbo.review 
 FROM 'd:\userdata\cmpt354YelpA3\review.csv' 
 WITH (fieldterminator=',', rowterminator='\n', firstrow=2)
 GO
 
 
-USE pen354
 BULK INSERT dbo.tip 
 FROM 'd:\userdata\cmpt354YelpA3\tip.csv' 
 WITH (fieldterminator=',', rowterminator='\n', firstrow=2)
