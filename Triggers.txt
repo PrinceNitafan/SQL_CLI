@@ -1,0 +1,50 @@
+﻿// Note: this trigger updates the review count when a new review is added.
+// If a user makes a new review for the same business, their previous reviews
+// are not counted. Only new reviews are counted.
+CREATE TRIGGER UpdateReviewsCount ON review
+                AFTER INSERT
+                AS BEGIN
+
+
+                UPDATE business 
+                SET review_count = 
+                (SELECT COUNT (*)
+                 FROM review r1, inserted i1
+                 WHERE i1.business_id = r1.business_id AND 
+                           r1.date = (SELECT MAX(r2.date) maxdate
+                                                  FROM review r2
+                                                  WHERE r1.user_id = r2.user_id AND
+                                                        i1.business_id = r2.business_id
+                                                                GROUP BY r2.user_id)),
+
+
+                stars =
+                (SELECT AVG(CAST(r3.stars AS DECIMAL(2,1)))
+                 FROM review r3, inserted i2
+                 WHERE i2.business_id = r3.business_id AND 
+                           r3.date = (SELECT MAX(r4.date) maxdate
+                                                  FROM review r4
+                                                  WHERE r3.user_id = r4.user_id AND
+                                                        i2.business_id = r4.business_id
+                                                                GROUP BY r4.user_id))
+                FROM business b, inserted i 
+                WHERE b.business_id = i.business_id
+END
+
+
+// Note: Users are only allowed to tip if they made a review for the business
+CREATE TRIGGER UpdateTip ON tip
+        AFTER INSERT
+        AS
+
+
+        IF (SELECT COUNT(i.user_id) 
+                FROM inserted i, review r
+                WHERE i.business_id = r.business_id AND
+                          i.user_id = r.user_id) = 0
+
+
+        BEGIN
+                RAISERROR ('users can only give a tip for a business they have previously reviewed.', 5, 1)
+                ROLLBACK TRANSACTION
+END
