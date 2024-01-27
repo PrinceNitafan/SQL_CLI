@@ -6,7 +6,8 @@ class LogIn:
         self.user_id = ''
         print('Welcome to my SQL search application!')
 
-    # user ID's are the ones from datafiles
+    # user ID's are from the data in the datafiles folder
+    # This function will search for a user ID from user_yelp and compare to inputted user id
     def log_in(self):
         print('LOG IN: case-sensitive. (Enter nothing to quit) ')
         user_ID = input('Log in with your yelp user ID: ').strip()
