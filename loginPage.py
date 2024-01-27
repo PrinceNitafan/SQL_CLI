@@ -6,6 +6,7 @@ class LogIn:
         self.user_id = ''
         print('Welcome to my SQL search application!')
 
+    # user ID's are the ones from datafiles
     def log_in(self):
         print('LOG IN: case-sensitive. (Enter nothing to quit) ')
         user_ID = input('Log in with your yelp user ID: ').strip()
