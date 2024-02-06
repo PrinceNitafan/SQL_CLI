@@ -12,7 +12,7 @@ The following variables needs to be filled in before running the program:
 Additionally, there are some triggers that can be used if wanted/needed.
 // Read the notes in Triggers.txt for each trigger's functionality
 
-// For more info variable constraints, etc, check the SQL_code.txt file
+// For more info on variable constraints, primary keys, etc, check the SQL_code.txt file
 // pre-made data files (in datafiles folder) for these tables are provied by SFU CMPT 354 staff.
 Tables: 
     business = (business_id, name, address, city, postal_code, stars, review_count) 
