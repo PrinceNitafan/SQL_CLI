@@ -21,6 +21,3 @@ Tables:
     review = (review_id, user_id, business_id, stars, useful, funny, cool, date) 
     user_yelp = (user_id, name, review_count, yelping_since, useful, funny, cool, fans, average_stars) 
     friendship = (user_id, friend) 
-
-Known Bugs:
-- Adding a review sometimes crashes/fails.
